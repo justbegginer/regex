@@ -25,4 +25,14 @@ public class RegexFunctions {
                 .filter(str -> isEmailCorrect(str))
                 .collect(Collectors.toList());
     }
+    public static boolean isMacCorrect(String str){
+        Pattern pattern = Pattern.compile("^([a-fA-F0-9]{2}(\\.|-)){5}[a-fA-F0-9]{2}$");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.find();
+    }
+    public static List correctMacList(List<String> array){
+        return array.stream()
+                .filter(str -> isMacCorrect(str))
+                .collect(Collectors.toList());
+    }
 }
