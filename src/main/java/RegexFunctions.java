@@ -16,7 +16,7 @@ public class RegexFunctions {
                 .collect(Collectors.toList());
     }
     public static boolean isEmailCorrect(String str){
-        Pattern pattern = Pattern.compile("");
+        Pattern pattern = Pattern.compile("^[a-z](\\.?[a-z]+)+@[a-z](\\.?[a-z]+)+$");
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }
