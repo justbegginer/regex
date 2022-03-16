@@ -33,9 +33,27 @@ class RegexFunctionsTest {
 
     @Test
     void isEmailCorrect() {
+        assertTrue(RegexFunctions.isEmailCorrect("aa@daf.cae"));
+        assertTrue(RegexFunctions.isEmailCorrect("a.s@d.af.fs"));
+        assertTrue(RegexFunctions.isEmailCorrect("asdaddas@yandex.com"));
+        assertTrue(RegexFunctions.isEmailCorrect("asda.ddas@yandex.com"));
+        assertFalse(RegexFunctions.isEmailCorrect("dafs.daf.@afaaf.dad.fa.ad"));
+        assertFalse(RegexFunctions.isEmailCorrect(".dafsaf@dasf.com"));
+        assertFalse(RegexFunctions.isEmailCorrect("a@daf.cae"));
     }
 
     @Test
     void correctEmailList() {
+        List<String> list = Arrays.asList("aa@daf.cae",
+                "a.s@d.af.fs",
+                "asdaddas@yandex.com",
+                "asda.ddas@yandex.com",
+                "dafs.daf.@afaaf.dad.fa.ad",
+                ".dafsaf@dasf.com",
+                "a@daf.cae");
+        assertEquals(RegexFunctions.correctEmailList(list),Arrays.asList("aa@daf.cae",
+                "a.s@d.af.fs",
+                "asdaddas@yandex.com",
+                "asda.ddas@yandex.com"));
     }
 }
