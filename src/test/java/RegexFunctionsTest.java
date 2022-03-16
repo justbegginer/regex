@@ -56,4 +56,11 @@ class RegexFunctionsTest {
                 "asdaddas@yandex.com",
                 "asda.ddas@yandex.com"));
     }
+    @Test
+    void isMacCorrect(){
+        assertTrue(RegexFunctions.isMacCorrect("12.af.32.43.43.a3"));
+        assertTrue(RegexFunctions.isMacCorrect("ad-ad-da-da-da-da"));
+        assertFalse(RegexFunctions.isMacCorrect("dada.da.34.65.65.54"));
+        assertFalse(RegexFunctions.isMacCorrect("fs.43.54.65.76.45"));
+    }
 }
