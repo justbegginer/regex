@@ -63,4 +63,25 @@ class RegexFunctionsTest {
         assertFalse(RegexFunctions.isMacCorrect("dada.da.34.65.65.54"));
         assertFalse(RegexFunctions.isMacCorrect("fs.43.54.65.76.45"));
     }
+
+    @Test
+    void isDateCorrect(){
+        for (int i = 0; i <= 2022; i++) {
+            for (int j = 0; j <= 12; j++) {
+                for (int k = 0; k <= 30; k++) {
+                    assertTrue(RegexFunctions.isDateCorrect(String.format("%d/%d/%d", i, j,k)));
+                }
+            }
+            for (int j = 13; j < 100; j++) {
+                for (int k = 0; k < 30; k++) {
+                    assertFalse(RegexFunctions.isDateCorrect(String.format("%d/%d/%d", i, j,k)));
+                }
+            }
+            for (int j = 0; j < 12; j++) {
+                for (int k = 31; k < 100; k++) {
+                    assertFalse(RegexFunctions.isDateCorrect(String.format("%d/%d/%d", i, j,k)));
+                }
+            }
+        }
+    }
 }
