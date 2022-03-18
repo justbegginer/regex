@@ -29,6 +29,10 @@ public class RegexFunctions {
         return correctionChecker(str, "^([1]?[0-9]{0,3}|201[0-9]|202[012]|200[0-9])\\/(1[012]|[0-9])\\/(30|[12]?[0-9])$");
     }
     public static List<String> correctDataList(List<String> array){ return getList(array, str -> isDateCorrect(str)); }
+    public static boolean isIpCorrect(String str){
+        return correctionChecker(str, "^((1[0-9]{2}|2[0-4][0-9]|[0-9]{1,2}|25[0-6])\\.){3}(1[0-9]{2}|2[0-4][0-9]|[0-9]{1,2}|25[0-6])$");
+    }
+    public static List<String> correctIpList(List<String> array){ return getList(array, str -> isIpCorrect(str));}
     private static boolean correctionChecker(String str, String patternString){
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(str);
