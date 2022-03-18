@@ -84,4 +84,14 @@ class RegexFunctionsTest {
             }
         }
     }
+    @Test
+    void isIpCorrect(){
+        assertTrue(RegexFunctions.isIpCorrect("230.43.132.32"));
+        assertTrue(RegexFunctions.isIpCorrect("256.256.256.256"));
+        assertTrue(RegexFunctions.isIpCorrect("12.23.43.124"));
+        assertTrue(RegexFunctions.isIpCorrect("2.2.4.1"));
+        assertFalse(RegexFunctions.isIpCorrect("2.2.4."));
+        assertFalse(RegexFunctions.isIpCorrect("257.2.4.2"));
+        assertFalse(RegexFunctions.isIpCorrect("2.300.4.12"));
+    }
 }
