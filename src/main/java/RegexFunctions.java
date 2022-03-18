@@ -25,6 +25,10 @@ public class RegexFunctions {
     public static List<String> correctMacList(List<String> array){
         return getList(array, str -> isMacCorrect(str));
     }
+    public static boolean isDateCorrect(String str){
+        return correctionChecker(str, "^([1]?[0-9]{0,3}|201[0-9]|202[012]|200[0-9])\\/(1[012]|[0-9])\\/(30|[12]?[0-9])$");
+    }
+    public static List<String> correctDataList(List<String> array){ return getList(array, str -> isDateCorrect(str)); }
     private static boolean correctionChecker(String str, String patternString){
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(str);
