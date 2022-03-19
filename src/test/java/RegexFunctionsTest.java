@@ -94,4 +94,14 @@ class RegexFunctionsTest {
         assertFalse(RegexFunctions.isIpCorrect("257.2.4.2"));
         assertFalse(RegexFunctions.isIpCorrect("2.300.4.12"));
     }
+
+    @Test
+    void isLinkCorrect(){
+        assertTrue(RegexFunctions.isLinkCorrect("https://regex101.com/"));
+        assertTrue(RegexFunctions.isLinkCorrect("https://vk.com"));
+        assertTrue(RegexFunctions.isLinkCorrect("http://dgdg.c"));
+        assertFalse(RegexFunctions.isLinkCorrect("hhdj://ksdd.re"));
+        assertFalse(RegexFunctions.isLinkCorrect("http://dsgsvd"));
+        assertFalse(RegexFunctions.isLinkCorrect("http://dsgsvd."));
+    }
 }
