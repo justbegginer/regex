@@ -55,6 +55,13 @@ public class RegexFunctions {
         return getList(array, RegexFunctions::isLinkCorrect);
     }
 
+    public static boolean isTimeCorrect(String str) {
+        return correctionChecker(str, "^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$");
+    }
+
+    public static List<String> correctTimeList(List<String> array){
+        return getList(array, RegexFunctions::isTimeCorrect);
+    }
     private static boolean correctionChecker(String str, String patternString) {
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(str);
