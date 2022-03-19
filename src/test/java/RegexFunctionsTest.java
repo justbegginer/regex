@@ -104,4 +104,25 @@ class RegexFunctionsTest {
         assertFalse(RegexFunctions.isLinkCorrect("http://dsgsvd"));
         assertFalse(RegexFunctions.isLinkCorrect("http://dsgsvd."));
     }
+
+    @Test
+    void isTimeCorrect(){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                assertTrue(RegexFunctions.isTimeCorrect(String.format("0%d:0%d", i, j)));
+            }
+            for (int j = 10; j < 60; j++) {
+                assertTrue(RegexFunctions.isTimeCorrect(String.format("0%d:%d", i, j)));
+            }
+
+        }
+        for (int i = 0; i < 24; i++) {
+            for (int j = 0; j < 60; j++) {
+                assertTrue(RegexFunctions.isTimeCorrect(String.format("%d:%d", i, j)));
+            }
+
+        }
+        assertFalse(RegexFunctions.isTimeCorrect("23:60"));
+        assertFalse(RegexFunctions.isTimeCorrect("30:30"));
+    }
 }
