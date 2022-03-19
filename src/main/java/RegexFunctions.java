@@ -47,6 +47,14 @@ public class RegexFunctions {
         return getList(array, RegexFunctions::isIpCorrect);
     }
 
+    public static boolean isLinkCorrect(String str) {
+        return correctionChecker(str, "^https?:\\/\\/[a-z][a-z0-9]+\\.[a-z]+\\/?$");
+    }
+
+    public static List<String> correctLinkList(List<String> array){
+        return getList(array, RegexFunctions::isLinkCorrect);
+    }
+
     private static boolean correctionChecker(String str, String patternString) {
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(str);
