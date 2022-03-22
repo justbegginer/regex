@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,6 +69,15 @@ public class RegexFunctions {
         return getListOf(str, "^[a-z][a-zA-Z]*$");
     }
 
+    public static List<String> getListOfWordsContainingSubstr(String str, String substr){
+        return getListOf(str.toLowerCase(), substr.toLowerCase());
+    }
+    public static List<String> getListOfWordsStartingFrom(String str, String substr){
+        return getListOf(str.toLowerCase(), "^"+substr.toLowerCase());
+    }
+    public static List<String> getListOfWordsEndingWith(String str, String substr){
+        return getListOf(str.toLowerCase(), substr.toLowerCase()+"$");
+    }
     private static boolean correctionChecker(String str, String patternString) {
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(str);
