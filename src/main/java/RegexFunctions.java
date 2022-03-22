@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,5 +73,16 @@ public class RegexFunctions {
         return array.stream()
                 .filter(predicate)
                 .collect(Collectors.toList());
+    }
+    private static List<String> getListOf(String string, String patternString){
+        Pattern pattern = Pattern.compile(patternString);
+        List<String> list = new ArrayList<>();
+        List<String> allWords = List.of(string.split(" "));
+        for (int i = 0; i < allWords.size(); i++) {
+            if (pattern.matcher(allWords.get(i)).find()){
+                list.add(allWords.get(i));
+            }
+        }
+        return list;
     }
 }
