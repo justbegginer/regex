@@ -67,23 +67,23 @@ public class RegexFunctions {
     }
 
     public static List<String> getListOfUpperCaseWords(String str) {
-        return RegexFunctions.getListOf(str, "^[A-Z][a-zA-Z]*$");
+        return RegexFunctions.getListOf(str, "^[A-Z][a-zA-Z]*$", false);
     }
 
     public static List<String> getListOfLowerCaseWords(String str) {
-        return RegexFunctions.getListOf(str, "^[a-z][a-zA-Z]*$");
+        return RegexFunctions.getListOf(str, "^[a-z][a-zA-Z]*$", false);
     }
 
-    public static List<String> getListOfWordsContainingSubstr(String str, String substr) {
-        return RegexFunctions.getListOf(str.toLowerCase(), substr.toLowerCase());
+    public static List<String> getListOfWordsContainingSubstr(String str, String substr, boolean ignoreCase) {
+        return RegexFunctions.getListOf(str, substr, ignoreCase);
     }
 
-    public static List<String> getListOfWordsStartingFrom(String str, String substr) {
-        return RegexFunctions.getListOf(str.toLowerCase(), "^" + substr.toLowerCase());
+    public static List<String> getListOfWordsStartingFrom(String str, String substr, boolean ignoreCase) {
+        return RegexFunctions.getListOf(str, "^" + substr, ignoreCase);
     }
 
-    public static List<String> getListOfWordsEndingWith(String str, String substr) {
-        return RegexFunctions.getListOf(str.toLowerCase(), substr.toLowerCase() + "$");
+    public static List<String> getListOfWordsEndingWith(String str, String substr, boolean ignoreCase) {
+        return RegexFunctions.getListOf(str, substr + "$", ignoreCase);
     }
 
     private static boolean correctionChecker(String str, String patternString) {
@@ -92,14 +92,17 @@ public class RegexFunctions {
         return matcher.find();
     }
 
-
     private static List<String> getList(List<String> array, Predicate<String> predicate) {
         return array.stream()
                 .filter(predicate)
                 .collect(Collectors.toList());
     }
 
-    private static List<String> getListOf(String string, String patternString) {
+    private static List<String> getListOf(String string, String patternString, boolean ignoreCase) {
+        if (ignoreCase){
+            string = string.toLowerCase();
+            patternString = patternString.toLowerCase();
+        }
         Pattern pattern = Pattern.compile(patternString);
         List<String> list = new ArrayList<>();
         List<String> allWords = List.of(string.split(" "));

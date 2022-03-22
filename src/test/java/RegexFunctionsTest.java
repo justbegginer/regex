@@ -144,10 +144,10 @@ class RegexFunctionsTest {
     @Test
     void getListOfWordsContainingSubstr(){
         List<String> list = RegexFunctions.getListOfWordsContainingSubstr(
-                "Subversion of subprogram was difficult and, maybe, incorrect Resub, fsub subster ", "sub");
+                "Subversion of subprogram was difficult and, maybe, incorrect Resub , fsub subster ", "sub", true);
         assertEquals(list.get(0), "subversion");
         assertEquals(list.get(1), "subprogram");
-        assertEquals(list.get(2), "Resub");
+        assertEquals(list.get(2), "resub");
         assertEquals(list.get(3), "fsub");
         assertEquals(list.get(4), "subster");
     }
@@ -155,7 +155,7 @@ class RegexFunctionsTest {
     @Test
     void getListOfWordsStartingFrom(){
         List<String> list = RegexFunctions.getListOfWordsStartingFrom(
-                "Subversion of subprogram was difficult and, maybe, incorrect Resub , fsub subster ", "sub");
+                "Subversion of subprogram was difficult and, maybe, incorrect Resub , fsub subster ", "sub", true);
         assertEquals(list.get(0), "subversion");
         assertEquals(list.get(1), "subprogram");
         assertEquals(list.get(2), "subster");
@@ -164,7 +164,7 @@ class RegexFunctionsTest {
     @Test
     void getListOfWordsEndingWith(){
         List<String> list = RegexFunctions.getListOfWordsEndingWith(
-                "Subversion of subprogram was difficult and, maybe, incorrect Resub , fsub subster ", "sub");
+                "Subversion of subprogram was difficult and, maybe, incorrect Resub , fsub subster ", "sub", true);
         assertEquals(list.get(0), "resub");
         assertEquals(list.get(1), "fsub");
     }
