@@ -125,4 +125,19 @@ class RegexFunctionsTest {
         assertFalse(RegexFunctions.isTimeCorrect("23:60"));
         assertFalse(RegexFunctions.isTimeCorrect("30:30"));
     }
+
+    @Test
+    void getListOfUpperCaseWords(){
+        List<String> list = RegexFunctions.getListOfUpperCaseWords("A world Of humAns Failed");
+        assertEquals(list.get(0), "A");
+        assertEquals(list.get(1), "Of");
+        assertEquals(list.get(2), "Failed");
+    }
+
+    @Test
+    void getListOfLowerCaseWords(){
+        List<String> list = RegexFunctions.getListOfLowerCaseWords("A world Of humans Failed");
+        assertEquals(list.get(0), "world");
+        assertEquals(list.get(1), "humans");
+    }
 }
