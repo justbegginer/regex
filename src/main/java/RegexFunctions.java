@@ -63,6 +63,15 @@ public class RegexFunctions {
     public static List<String> correctTimeList(List<String> array){
         return getList(array, RegexFunctions::isTimeCorrect);
     }
+
+    public static List<String> getListOfUpperCaseWords(String str){
+        return getListOf(str, "^[A-Z][a-zA-Z]*$");
+    }
+
+    public static List<String> getListOfLowerCaseWords(String str){
+        return getListOf(str, "^[a-z][a-zA-Z]*$");
+    }
+
     private static boolean correctionChecker(String str, String patternString) {
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(str);
