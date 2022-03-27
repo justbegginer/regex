@@ -1,3 +1,6 @@
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -5,9 +8,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RegexFunctions {
+    @Setter
+    @Getter
+    private static boolean isPatternAllString = true;
+
     public static boolean isPhoneNumberCorrect(String str) {
         return RegexFunctions.correctionChecker(str,
-                "^(8|(\\+7))[0-9]{10}$");
+                RegexFunctions.isPatternAllStringModifier(
+                        "(8|(\\+7))[0-9]{10}"));
     }
 
     public static List<String> correctPhoneNumberList(List<String> array) {
@@ -16,16 +24,18 @@ public class RegexFunctions {
 
     public static boolean isEmailCorrect(String str) {
         return RegexFunctions.correctionChecker(str,
-                "^[a-z](\\.?[a-z]+)+@[a-z](\\.?[a-z]+)+$");
+                RegexFunctions.isPatternAllStringModifier(
+                        "[a-z](\\.?[a-z]+)+@[a-z](\\.?[a-z]+)+"));
     }
 
-    public static List correctEmailList(List<String> array) {
+    public static List<String> correctEmailList(List<String> array) {
         return RegexFunctions.getList(array, RegexFunctions::isEmailCorrect);
     }
 
     public static boolean isMacCorrect(String str) {
         return RegexFunctions.correctionChecker(str,
-                "^([a-fA-F0-9]{2}(\\.|-)){5}[a-fA-F0-9]{2}$");
+                RegexFunctions.isPatternAllStringModifier(
+                        "([a-fA-F0-9]{2}(\\.|-)){5}[a-fA-F0-9]{2}"));
     }
 
     public static List<String> correctMacList(List<String> array) {
@@ -34,7 +44,8 @@ public class RegexFunctions {
 
     public static boolean isDateCorrect(String str) {
         return RegexFunctions.correctionChecker(str,
-                "^([1]?[0-9]{0,3}|201[0-9]|202[012]|200[0-9])\\/(1[012]|[0-9])\\/(30|[12]?[0-9])$");
+                RegexFunctions.isPatternAllStringModifier(
+                        "([1]?[0-9]{0,3}|201[0-9]|202[012]|200[0-9])\\/(1[012]|[0-9])\\/(30|[12]?[0-9])"));
     }
 
     public static List<String> correctDataList(List<String> array) {
@@ -43,7 +54,8 @@ public class RegexFunctions {
 
     public static boolean isIpCorrect(String str) {
         return RegexFunctions.correctionChecker(str,
-                "^((1[0-9]{2}|2[0-4][0-9]|[0-9]{1,2}|25[0-6])\\.){3}(1[0-9]{2}|2[0-4][0-9]|[0-9]{1,2}|25[0-6])$");
+                RegexFunctions.isPatternAllStringModifier(
+                        "((1[0-9]{2}|2[0-4][0-9]|[0-9]{1,2}|25[0-6])\\.){3}(1[0-9]{2}|2[0-4][0-9]|[0-9]{1,2}|25[0-6])"));
     }
 
     public static List<String> correctIpList(List<String> array) {
@@ -51,7 +63,9 @@ public class RegexFunctions {
     }
 
     public static boolean isLinkCorrect(String str) {
-        return RegexFunctions.correctionChecker(str, "^https?:\\/\\/[a-z][a-z0-9]+\\.[a-z]+\\/?$");
+        return RegexFunctions.correctionChecker(str,
+                RegexFunctions.isPatternAllStringModifier(
+                        "https?:\\/\\/[a-z][a-z0-9]+\\.[a-z]+\\/?"));
     }
 
     public static List<String> correctLinkList(List<String> array) {
@@ -59,7 +73,9 @@ public class RegexFunctions {
     }
 
     public static boolean isTimeCorrect(String str) {
-        return RegexFunctions.correctionChecker(str, "^([01]?[0-9]|2[0-3]):([0-5]?[0-9])$");
+        return RegexFunctions.correctionChecker(str,
+                RegexFunctions.isPatternAllStringModifier(
+                        "([01][0-9]|2[0-3]):([0-5][0-9])"));
     }
 
     public static List<String> correctTimeList(List<String> array) {
@@ -67,7 +83,9 @@ public class RegexFunctions {
     }
 
     public static boolean isCarNumberCorrect(String str) {
-        return RegexFunctions.correctionChecker(str, "^[a-z][0-9]{3}[a-z]{2}$");
+        return RegexFunctions.correctionChecker(str,
+                RegexFunctions.isPatternAllStringModifier(
+                        "[a-z][0-9]{3}[a-z]{2}"));
     }
 
     public static List<String> correctCarNumberList(List<String> array) {
@@ -120,5 +138,12 @@ public class RegexFunctions {
             }
         }
         return list;
+    }
+
+    private static  String isPatternAllStringModifier(String string){ // modify string according to flag
+        if (isPatternAllString){
+            string = "^"+string+"$";
+        }
+        return string;
     }
 }
