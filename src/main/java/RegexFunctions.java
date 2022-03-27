@@ -66,6 +66,14 @@ public class RegexFunctions {
         return RegexFunctions.getList(array, RegexFunctions::isTimeCorrect);
     }
 
+    public static boolean isCarNumberCorrect(String str) {
+        return RegexFunctions.correctionChecker(str, "^[a-z][0-9]{3}[a-z]{2}$");
+    }
+
+    public static List<String> correctCarNumberList(List<String> array) {
+        return RegexFunctions.getList(array, RegexFunctions::isCarNumberCorrect);
+    }
+
     public static List<String> getListOfUpperCaseWords(String str) {
         return RegexFunctions.getListOf(str, "^[A-Z][a-zA-Z]*$", false);
     }

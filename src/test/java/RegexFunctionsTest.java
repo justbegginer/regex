@@ -127,6 +127,16 @@ class RegexFunctionsTest {
     }
 
     @Test
+    void isCarNumberCorrect(){
+        assertTrue(RegexFunctions.isCarNumberCorrect("a103bv"));
+        assertTrue(RegexFunctions.isCarNumberCorrect("r002re"));
+        assertFalse(RegexFunctions.isCarNumberCorrect("r002r"));
+        assertFalse(RegexFunctions.isCarNumberCorrect("r002ree"));
+        assertFalse(RegexFunctions.isCarNumberCorrect("r02re"));
+        assertFalse(RegexFunctions.isCarNumberCorrect("r0002re"));
+    }
+
+    @Test
     void getListOfUpperCaseWords(){
         List<String> list = RegexFunctions.getListOfUpperCaseWords("A world Of humAns Failed");
         assertEquals(list.get(0), "A");
